@@ -1,9 +1,8 @@
 FROM nginx:alpine
 
-# Rimuoviamo la configurazione predefinita di Nginx
+# Rimozione configurazione prredefininita di nginx e sostituzione con la nostra configurazione personalizzata del reverse proxy
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copiamo la nostra configurazione personalizzata del reverse proxy
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
