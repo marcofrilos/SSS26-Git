@@ -1,0 +1,31 @@
+services:
+  backend:
+    image: banking-backend:v1
+    container_name: banking_backend
+    expose:
+      - "8000"
+    networks:
+      - banking-net
+
+  frontend:
+    image: banking-frontend:v1
+    container_name: banking_frontend
+    expose:
+      - "80"
+    networks:
+      - banking-net
+
+  proxy:
+    image: banking-proxy:v1
+    container_name: banking_proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - banking-net
+
+networks:
+  banking-net:
+    driver: bridge
