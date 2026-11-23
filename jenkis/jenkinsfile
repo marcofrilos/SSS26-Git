@@ -2,16 +2,24 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
+        stage('Checkout del Repository') {
             steps {
-                echo 'Inizio la fase di Checkout del codice...'
-                // Jenkins eseguirà il clone automatico se configurato via UI, 
-                // oppure lo si definisce qui.
+                // Sostituisci l'URL e il branch con i tuoi (se il repo è pubblico non servono credenziali)
+                git branch: 'marco', url: 'https://github.com/marcofrilos/SSS26-Git.git'
             }
         }
-        stage('Build FE & BE') {
+        
+        stage('Build Immagine Backend') {
             steps {
-                echo 'Pronto per la build delle immagini Docker...'
+                // Il path ./es/backend dipende da come è strutturato il tuo repo. 
+                // Adattalo se backend/ è nella root o dentro es/
+                sh 'docker build -t banking-backend:jenkins ./es/backend'
+            }
+        }
+        
+        stage('Build Immagine Frontend') {
+            steps {
+                sh 'docker build -t banking-frontend:jenkins ./es/frontend'
             }
         }
     }
