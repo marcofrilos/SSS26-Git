@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Inizio la fase di Checkout del codice...'
+                // Jenkins eseguirà il clone automatico se configurato via UI, 
+                // oppure lo si definisce qui.
+            }
+        }
+        stage('Build FE & BE') {
+            steps {
+                echo 'Pronto per la build delle immagini Docker...'
+            }
+        }
+    }
+}
