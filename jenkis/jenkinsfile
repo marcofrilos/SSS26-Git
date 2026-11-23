@@ -13,13 +13,13 @@ pipeline {
             steps {
                 // Il path ./es/backend dipende da come è strutturato il tuo repo. 
                 // Adattalo se backend/ è nella root o dentro es/
-                sh 'docker build -t banking-backend:jenkins ./es/backend'
+                sh 'docker build -t banking-backend:jenkins ./bankingApp/backend'
             }
         }
         
         stage('Build Immagine Frontend') {
             steps {
-                sh 'docker build -t banking-frontend:jenkins ./es/frontend'
+                sh 'docker build -t banking-frontend:jenkins ./bankingApp/frontend'
             }
         }
     }
